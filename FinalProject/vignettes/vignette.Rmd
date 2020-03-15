@@ -1,0 +1,60 @@
+---
+title: "vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message = FALSE}
+library(FinalProject)
+library(tidyverse)
+library(devtools)
+load_all()
+```
+
+This package is contributed by Zhuoheng Han, Christopher Ton, Samuel Krut and Valerie Tu.
+
+Our package enables other users to carry out bag of little boostraps for the multiple linear regression model.This package gives users to use parallel processing to get the confidence interval of sigma, the confidence interval of coefficients, and the confidence interval of prediction. Users can decide the group numbers and the bootstraps times in this package.
+
+If users have problems how to use our functions, they can use `?coef_ci`, `?sigma_ci`, and `?pred_ci` to figure out the usage, variables and an example for each function.
+
+```{r, message = FALSE}
+?coef_ci
+?sigma_ci
+?pred_ci
+```
+
+Now, we use part of flights data in library(nycflights13) to illustrate how to use our package. Here are our data and newdata look like. We choose `dep_delay`, `arr_delay`, and `distance` as independent variables and we combine `hour` and `minute` into `time` as the response variable. 
+
+```{r, message = FALSE}
+library(nycflights13)
+flights = flights %>%
+  mutate(time = hour*60 + minute) %>%
+  select(dep_delay,arr_delay,distance,time)
+y = flights$time #response variable defined
+x = flights[,c(1:3)] #predictor variables subsetted
+data = data.frame(y,x)
+newdata = data.frame(dep_delay = c(10,20), arr_delay = c(20,30), distance = c(400,500))
+```
+
+First, we apply the `coef_ci` fucntion to find the confidence interval of each coefficient. Users can decide group numbers and bootstrap times, and i will use group_number = 10 and boostraps_times = 100 as an example. (Also, for the `pred_ci` and `sigma_ci`)
+```{r, message = FALSE, warning = FALSE}
+coef_ci(data, 10, 100)
+summary(lm(y~., data))$coef[,1]
+```
+
+Then, let us check how `pred_ci` function works.
+```{r, message = FALSE, warning = FALSE}
+pred_ci(data, newdata, 10, 100)
+predict(lm(y~., data), newdata)
+```
+
