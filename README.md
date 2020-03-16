@@ -8,8 +8,11 @@ Applying BLB to MLR Using Parallel Processing
 
 ### Authors: 
 Zhuoheng Han: hzhhan@ucdavis.edu
+
 Christopher Ton: chrton@ucdavis.edu
+
 Samuel Krut: sdkrut@ucdavis.edu
+
 Valerie Tu: vttu@ucdavis.edu 
     
 ### Description: 
@@ -27,6 +30,8 @@ Our package enables other users to carry out bag of little boostraps for the mul
     
 ### Example:
 coef_ci(data, group_number = 10, bootstrap_times = 1000)
+
 sigma_ci(data, group_number = 10, bootstrap_times = 1000)
+
 pred_ci(data, newdata, group_number = 10, bootstrap_times = 1000)
     
