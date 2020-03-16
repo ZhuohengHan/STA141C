@@ -16,16 +16,16 @@ knitr::opts_chunk$set(
 
 ```{r setup, message = FALSE}
 library(FinalProject)
-library(tidyverse)
 library(devtools)
 load_all()
+library(dplyr)
 ```
 
 This package is contributed by Zhuoheng Han, Christopher Ton, Samuel Krut and Valerie Tu.
 
-Our package enables other users to carry out bag-of-little-boostraps for the multiple linear regression model. This package gives users the ability use parallel processing to obtain the  confidence interval of sigma, coefficients, and prediction intervals. Users can decide group numbers and the times of bootstraps in this package.
+Our package enables other users to carry out bag of little boostraps for the multiple linear regression model.This package gives users to use parallel processing to obtain the confidence interval of sigma, the confidence interval of coefficients, and the confidence interval of prediction. Users can decide the group numbers and the bootstraps times in this package.
 
-In the instance that users have problems on how to use our functions, please use `?coef_ci`, `?sigma_ci`, and `?pred_ci` to learn more about the usage and variables. We have also included an example for each function.
+If users have problems how to use our functions, they can use `?coef_ci`, `?sigma_ci`, and `?pred_ci` to figure out the usage, variables and an example for each function.
 
 ```{r, message = FALSE}
 ?coef_ci
@@ -33,7 +33,7 @@ In the instance that users have problems on how to use our functions, please use
 ?pred_ci
 ```
 
-Here we use part of the flights data in library(nycflights13) to illustrate how to use our package. Here is what our data and newdata look like. We choose `dep_delay`, `arr_delay`, and `distance` as independent variables and we combine `hour` and `minute` into `time` as the response variable. 
+Now, we use part of flights data in library(nycflights13) to illustrate how to use our package. Here are our data and newdata look like. We choose `dep_delay`, `arr_delay`, and `distance` as independent variables and we combine `hour` and `minute` into `time` as the response variable. 
 
 ```{r, message = FALSE}
 library(nycflights13)
@@ -46,8 +46,7 @@ data = data.frame(y,x)
 newdata = data.frame(dep_delay = c(10,20), arr_delay = c(20,30), distance = c(400,500))
 ```
 
-First, we apply the `coef_ci` function to find the confidence interval of each coefficient. Users can decide group numbers and times of bootstraps. In this instance we will use group_number = 10 and boostraps_times = 100 as an example. (Also, for the `pred_ci` and `sigma_ci`)
-
+First, we apply the `coef_ci` fucntion to find the confidence interval of each coefficient. Users can decide group numbers and bootstrap times, and i will use group_number = 10 and boostraps_times = 100 as an example. (Also, for the `pred_ci` and `sigma_ci`)
 ```{r, message = FALSE, warning = FALSE}
 coef_ci(data, 10, 100)
 summary(lm(y~., data))$coef[,1]
@@ -58,3 +57,13 @@ Then, let us check how `pred_ci` function works.
 pred_ci(data, newdata, 10, 100)
 predict(lm(y~., data), newdata)
 ```
+
+Finally, check `sigma_ci` function.
+
+```{r, message = FALSE, warning = FALSE}
+sigma_ci(data, 10, 100)
+summary(lm(y~., data))$sigma
+```
+
+To sum up, the confidence intervals of coefficients, sigma, and prediction all give the good prediction. If users want to see our codes, it is in R file. 
+

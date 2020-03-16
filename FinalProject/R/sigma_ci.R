@@ -23,7 +23,11 @@ sigma_ci <- function(data, group_number, bootstrap_times){
   group <- sample(seq_len(m), n, replace = TRUE)
 
   calc_sigma_blb <- function(subsample, freqs){
-    as.numeric(summary(stats::lm(y ~ ., weights = freqs, data = subsample))["sigma"])
+    fit <- lm(y~., data = subsample, weights = freqs)
+    y <- model.extract(fit$model, "response")
+    e <- fitted(fit) - y
+    w <- fit$weights
+    sqrt(sum(w*e^2)/(sum(w)))
   }
 
   future::plan(future::multiprocess, workers = 4)
