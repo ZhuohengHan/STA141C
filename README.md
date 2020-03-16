@@ -1,6 +1,6 @@
 # STA141C_Final_Project
 
-## Package: 
+### Package: 
 FinalProject
 
 ### Title: 
@@ -25,4 +25,10 @@ Our package enables other users to carry out bag of little boostraps for the mul
     stringr,
     purrr,
     future,
+    
+### Example:
+
+coef_ci(data, group_number = 10, bootstrap_times = 1000)
+sigma_ci(data, group_number = 10, bootstrap_times = 1000)
+pred_ci(data, newdata, group_number = 10, bootstrap_times = 1000)
     
