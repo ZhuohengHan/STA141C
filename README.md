@@ -1,10 +1,12 @@
 # STA141C_Final_Project
 
-## Package: FinalProject
+## Package: 
+FinalProject
 
-### Title: Applying BLB to MLR Using Parallel Processing
+### Title: 
+Applying BLB to MLR Using Parallel Processing
 
-### Authors@R: 
+### Authors: 
 
     c(person("Zhuoheng", "Han", email = "hzhhan@ucdavis.edu", role = c("aut","cre")),
     person("Christopher","Ton",email="chrton@ucdavis.edu",role = c("aut","ctb")),
