@@ -1,0 +1,102 @@
+
+R version 3.5.1 (2018-07-02) -- "Feather Spray"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "FinalProject"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> base::assign(".ExTimings", "FinalProject-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
+> library('FinalProject')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("coef_ci")
+> ### * coef_ci
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: coef_ci
+> ### Title: Confidence Intervals of Coefficients
+> ### Aliases: coef_ci
+> 
+> ### ** Examples
+> 
+> library(nycflights13)
+Warning: package ‘nycflights13’ was built under R version 3.5.2
+> x = flights$dep_delay
+> y = flights$arr_time
+> data = data.frame(x,y)
+> group_number = 10
+> bootstrap_times = 10
+> coef_ci(data, group_number, bootstrap_times)
+Warning: [ONE-TIME WARNING] Forked processing ('multicore') is disabled in future (>= 1.13.0) when running R from RStudio, because it is considered unstable. Because of this, plan("multicore") will fall back to plan("sequential"), and plan("multiprocess") will fall back to plan("multisession") - not plan("multicore") as in the past. For more details, how to control forked processing or not, and how to silence this warning in future R sessions, see ?future::supportsMulticore
+[[1]]
+    2.5%    97.5% 
+1495.871 1498.452 
+
+[[2]]
+     2.5%     97.5% 
+0.3253787 0.4428296 
+
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("coef_ci", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:nycflights13’
+
+> nameEx("pred_ci")
+> ### * pred_ci
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: pred_ci
+> ### Title: Confidence Intervals of Predictions
+> ### Aliases: pred_ci
+> 
+> ### ** Examples
+> 
+> library(nycflights13)
+Warning: package ‘nycflights13’ was built under R version 3.5.2
+> x = flights$dep_delay
+> y = flights$arr_time
+> data = data.frame(x,y)
+> newdata = rbind(1,2)
+> group_number = 10
+> bootstrap_times = 10
+> pred_ci(data,newdata,group_number,bootstrap_times)
+Error in model.frame.default(Terms, newdata, na.action = na.action, xlev = object$xlevels) : 
+  'data' must be a data.frame, not a matrix or an array
+Calls: pred_ci ... resolve.list -> signalConditionsASAP -> signalConditions
+Execution halted
