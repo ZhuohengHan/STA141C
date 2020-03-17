@@ -21,11 +21,15 @@ load_all()
 library(dplyr)
 ```
 
+# Instruction for Usage
+
 This package is contributed by Zhuoheng Han, Christopher Ton, Samuel Krut and Valerie Tu.
 
 Our package enables other users to carry out bag of little boostraps for the multiple linear regression model. This package gives users the ability to use parallel processing in order to obtain the confidence interval of sigma, coefficients, and prediction intervals. Users can decide the group numbers and the times of bootstraps in this package.
 
 If users have questions on how to use our functions, they can use `?coef_ci`, `?sigma_ci`, and `?pred_ci` to learn more about  usage, variables. We have also included an example for each function.
+
+## Function Documentation
 
 ```{r, message = FALSE}
 ?coef_ci
@@ -34,6 +38,8 @@ If users have questions on how to use our functions, they can use `?coef_ci`, `?
 ```
 
 Here, we used the flights data in library(nycflights13) to illustrate how to use our package. This is what our data and newdata look like. We choose `dep_delay`, `arr_delay`, and `distance` as independent variables and we combined `hour` and `minute` into `time` as the response variable. 
+
+## Sample training and testing data defination
 
 ```{r, message = FALSE}
 library(nycflights13)
