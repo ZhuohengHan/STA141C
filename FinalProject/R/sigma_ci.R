@@ -23,9 +23,9 @@ sigma_ci <- function(data, group_number, bootstrap_times){
   group <- sample(seq_len(m), n, replace = TRUE)
 
   calc_sigma_blb <- function(subsample, freqs){
-    fit <- lm(y~., data = subsample, weights = freqs)
-    y <- model.extract(fit$model, "response")
-    e <- fitted(fit) - y
+    fit <- stats::lm(y~., data = subsample, weights = freqs)
+    y <- stats::model.extract(fit$model, "response")
+    e <- stats::fitted(fit) - y
     w <- fit$weights
     sqrt(sum(w*e^2)/(sum(w)))
   }
