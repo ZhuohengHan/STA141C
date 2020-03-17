@@ -8,6 +8,8 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' future::plan(future::multiprocess, workers = 4)
 #' library(nycflights13)
 #' x = flights$dep_delay
 #' y = flights$arr_time
@@ -15,6 +17,7 @@
 #' group_number = 10
 #' bootstrap_times = 10
 #' coef_ci(data, group_number, bootstrap_times)
+#' }
 
 coef_ci <-function(data, group_number, bootstrap_times){
   set.seed(141)
@@ -33,7 +36,6 @@ coef_ci <-function(data, group_number, bootstrap_times){
   }
 
   B <- bootstrap_times
-  future::plan(future::multiprocess, workers = 8)
 
   ci <- function(i) {
     ci_list <- furrr::future_map(seq_len(m), ~{

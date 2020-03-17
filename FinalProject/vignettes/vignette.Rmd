@@ -1,8 +1,8 @@
 ---
-title: "Applying BLB to MLR Using Parallel Processing"
+title: "vignette"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Applying BLB to MLR Using Parallel Processing}
+  %\VignetteIndexEntry{vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,14 +14,14 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, message = FALSE}
+```{r setup, message = FALSE,warning = FALSE}
 library(FinalProject)
 library(devtools)
 load_all()
 library(dplyr)
 ```
 
-# Instruction for Usage
+## Instructions for Package
 
 This package is contributed by Zhuoheng Han, Christopher Ton, Samuel Krut and Valerie Tu.
 
@@ -29,17 +29,15 @@ Our package enables other users to carry out bag of little boostraps for the mul
 
 If users have questions on how to use our functions, they can use `?coef_ci`, `?sigma_ci`, and `?pred_ci` to learn more about  usage, variables. We have also included an example for each function.
 
-## Function Documentation
-
 ```{r, message = FALSE}
 ?coef_ci
 ?sigma_ci
 ?pred_ci
 ```
 
-Here, we used the flights data in library(nycflights13) to illustrate how to use our package. This is what our data and newdata look like. We choose `dep_delay`, `arr_delay`, and `distance` as independent variables and we combined `hour` and `minute` into `time` as the response variable. 
+### Example of Using Our Package
 
-## Sample training and testing data defination
+Here, we used the flights data in library(nycflights13) to illustrate how to use our package. This is what our data and newdata look like. We choose `dep_delay`, `arr_delay`, and `distance` as independent variables and we combined `hour` and `minute` into `time` as the response variable. 
 
 ```{r, message = FALSE}
 library(nycflights13)
@@ -50,6 +48,12 @@ y = flights$time #response variable defined
 x = flights[,c(1:3)] #predictor variables subsetted
 data = data.frame(y,x)
 newdata = data.frame(dep_delay = c(10,20), arr_delay = c(20,30), distance = c(400,500))
+```
+
+Before using our three functions, users should define workers. Here, we use workers which equal to 4 to show how our functions work.
+
+```{r, warning = FALSE}
+future::plan(future::multiprocess, workers = 4)
 ```
 
 First, we apply the `coef_ci` function to find the confidence interval of each coefficient. Users can decide group numbers and bootstrap times. In this case we will use group_number = 10 and boostraps_times = 100 as an example. (We also used group_number = 10 and boostraps_times = 100 for the `pred_ci` and `sigma_ci`.)

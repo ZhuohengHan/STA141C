@@ -8,6 +8,8 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' future::plan(future::multiprocess, workers = 4)
 #' library(nycflights13)
 #' x = flights$dep_delay
 #' y = flights$arr_time
@@ -15,6 +17,7 @@
 #' group_number = 10
 #' bootstrap_times = 10
 #' sigma_ci(data,group_number,bootstrap_times)
+#' }
 
 sigma_ci <- function(data, group_number, bootstrap_times){
   set.seed(141)
@@ -30,7 +33,6 @@ sigma_ci <- function(data, group_number, bootstrap_times){
     sqrt(sum(w*e^2)/(sum(w)))
   }
 
-  future::plan(future::multiprocess, workers = 4)
   B <- bootstrap_times
 
   each_boot <-function(i, subsample){

@@ -22,6 +22,8 @@ Confidence Intervals
 Confidence Intervals of Predictions
 }
 \examples{
+\dontrun{
+future::plan(future::multiprocess, workers = 4)
 library(nycflights13)
 x = flights$dep_delay
 y = flights$arr_time
@@ -30,4 +32,5 @@ newdata = rbind(1,2)
 group_number = 10
 bootstrap_times = 10
 pred_ci(data,newdata,group_number,bootstrap_times)
+}
 }
