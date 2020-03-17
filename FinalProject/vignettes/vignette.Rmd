@@ -1,8 +1,8 @@
 ---
-title: "vignette"
+title: "Applying BLB to MLR Using Parallel Processing"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{vignette}
+  %\VignetteIndexEntry{Applying BLB to MLR Using Parallel Processing}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
