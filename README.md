@@ -16,7 +16,7 @@ Samuel Krut: sdkrut@ucdavis.edu
 Valerie Tu: vttu@ucdavis.edu 
     
 ### Description: 
-Our package enables other users to carry out bag of little boostraps for the multiple linear regression model. This package gives users to use parallel processing to get the confidence interval of sigma, the confidence interval of coefficients, and the confidence interval of prediction. Users can decide the group numbers and the bootstraps times in this package.
+Our package enables other users to carry out bag of little boostraps for the multiple linear regression model. This package gives users to use parallel processing to get the confidence interval of sigma, the confidence interval of coefficients, and the confidence interval of prediction. Users can decide the group numbers and the bootstraps times in this package and users should define workers before using functions.
 
 ### Imports: 
 
