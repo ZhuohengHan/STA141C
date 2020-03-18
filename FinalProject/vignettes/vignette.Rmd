@@ -37,7 +37,7 @@ If users have questions on how to use our functions, they can use `?coef_ci`, `?
 
 ### Example of Using Our Package
 
-Here, we used the flights data in library(nycflights13) to illustrate how to use our package. This is what our data and newdata look like. We choose `dep_delay`, `arr_delay`, and `distance` as independent variables and we combined `hour` and `minute` into `time` as the response variable. 
+Here, we used the flights data in library(nycflights13) to illustrate how to use our package. This is what our data and newdata look like. We choose `dep_delay`, `arr_delay`, and `distance` as independent variables and we combined `hour` and `minute` into `time` as the response variable. We found that veriables are all significiant.
 
 ```{r, message = FALSE}
 library(nycflights13)
@@ -48,6 +48,7 @@ y = flights$time #response variable defined
 x = flights[,c(1:3)] #predictor variables subsetted
 data = data.frame(y,x)
 newdata = data.frame(dep_delay = c(10,20), arr_delay = c(20,30), distance = c(400,500))
+summary(lm(y~., data))
 ```
 
 Before using our three functions, users should define workers. Here, we use workers which equal to 4 to show how our functions work.
